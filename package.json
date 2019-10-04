@@ -1,0 +1,109 @@
+{
+  "name": "caredocplus-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Peter Kim <hj_kim@caredoc.kr>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/cors": "^2.8.5",
+    "@types/dotenv": "^6.1.1",
+    "@types/express-session": "^1.15.14",
+    "@types/helmet": "^0.0.43",
+    "@types/jest": "^24.0.18",
+    "@types/jsonwebtoken": "^8.3.2",
+    "@types/morgan": "^1.7.36",
+    "@types/node": "^12.6.8",
+    "@types/passport": "^1.0.1",
+    "@types/passport-jwt": "^3.0.2",
+    "@types/supertest": "^2.0.8",
+    "@typescript-eslint/eslint-plugin": "^2.1.0",
+    "@typescript-eslint/parser": "^2.1.0",
+    "babel-runtime": "^6.26.0",
+    "eslint": "^6.3.0",
+    "gql-merge": "^0.0.6",
+    "graphql-to-typescript": "^0.1.2",
+    "husky": "^3.0.5",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.2.5",
+    "nodemon": "^1.19.1",
+    "supertest": "^4.0.2",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.3.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^3.0.3",
+    "@graphql-codegen/typescript-resolvers": "^1.7.0",
+    "@types/graphql": "^14.5.0",
+    "apollo-server-express": "^2.9.3",
+    "bcrypt": "^3.0.6",
+    "class-validator": "^0.10.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "graphql": "^14.5.8",
+    "graphql-tools": "^4.0.5",
+    "helmet": "^3.19.0",
+    "jsonwebtoken": "^8.5.1",
+    "merge-graphql-schemas": "^1.5.8",
+    "moment": "^2.24.0",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.2",
+    "mysql": "^2.17.1",
+    "nodemailer": "^6.3.0",
+    "nodemailer-sendgrid-transport": "^0.2.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "pg": "^7.11.0",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "^0.17.5",
+    "typedi": "^0.8.0",
+    "typeorm": "^0.2.18",
+    "typeorm-typedi-extensions": "^0.2.3"
+  },
+  "scripts": {
+    "dev": "cd src &&  NODE_ENV=development nodemon --exec ts-node app.ts -e ts,graphql",
+    "start": "cd src &&  NODE_ENV=production nodemon --exec ts-node app.ts -e ts,graphql",
+    "lint": "eslint ./src/**/*.ts --fix",
+    "test": "jest --passWithNoTests --runInBand",
+    "entity:create": "ts-node ./node_modules/typeorm/cli.js entity:create -n",
+    "migrate": "ts-node ./node_modules/typeorm/cli.js migration:run",
+    "migrate:revert": "ts-node ./node_modules/typeorm/cli.js migration:revert",
+    "migration:show": "ts-node ./node_modules/typeorm/cli.js migration:show",
+    "migration:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate -n",
+    "migration:create": "ts-node ./node_modules/typeorm/cli.js migration:create -n"
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "eslint --fix",
+      "git add",
+      "jest --bail --findRelatedTests"
+    ]
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "tsconfig.json"
+      }
+    },
+    "testRegex": "\\.(test|spec)\\.((js|ts))$",
+    "setupFilesAfterEnv": [
+      "<rootDir>/__tests__/setup.ts"
+    ],
+    "cacheDirectory": ".jest/cache"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}
