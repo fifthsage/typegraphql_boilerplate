@@ -1,3 +1,3 @@
-import getApp from "./server";
+import server from "./server";
 
-export default getApp();
+server().then(app => app.listen());

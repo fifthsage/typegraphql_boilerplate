@@ -11,7 +11,7 @@ export default {
     },
     test: {
       host: process.env.DB_HOST || "127.0.0.1",
-      db: `${process.env.DB_DATABASE || "db"}_test`,
+      db: `${process.env.DB_DATABASE || "db"}`,
       user: process.env.DB_USER || "user",
       password: process.env.DB_PASSWORD,
       port: process.env.DB_PORT || 3306

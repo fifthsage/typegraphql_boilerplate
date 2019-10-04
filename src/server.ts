@@ -29,7 +29,7 @@ app.use(logger("dev"));
 app.use(helmet());
 app.use(authenticateJwt);
 
-const getApp = async () => {
+const prepareServer = async () => {
   try {
     const apolloServer = await apollo();
 
@@ -43,11 +43,16 @@ const getApp = async () => {
     console.log(e);
   }
 
-  app.listen(common.port, () => {
-    console.log(`🚀 Server ready at ${common.port}`);
-  });
-
   return app;
 };
 
-export default getApp;
+const listen = () => {
+  app.listen(common.port, () => {
+    console.log(`🚀 Server ready at ${common.port}`);
+  });
+};
+
+export default async () => ({
+  app: await prepareServer(),
+  listen: listen
+});
