@@ -1,4 +1,4 @@
-# typesciprt + express + typeorm + typegraphql boilerpalte
+# express + typesciprt + typeorm + typegraphql + apollo server boilerpalte
 
 steps
 
