@@ -26,3 +26,11 @@ Query {
   }
 }
 ```
+
+testing
+
+```bash
+$ yarn test -u
+```
+
+check the snapshot in test folder
