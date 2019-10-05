@@ -2,7 +2,7 @@
   "name": "caredocplus-api",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Peter Kim <hj_kim@caredoc.kr>",
+  "author": "caredoc <dev@caredoc.kr>",
   "license": "MIT",
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",
@@ -68,7 +68,7 @@
     "dev": "cd src &&  NODE_ENV=development nodemon --exec ts-node app.ts -e ts,graphql",
     "start": "cd src &&  NODE_ENV=production nodemon --exec ts-node app.ts -e ts,graphql",
     "lint": "eslint ./src/**/*.ts --fix",
-    "test": "jest --passWithNoTests --runInBand",
+    "test": "jest --passWithNoTests --forceExit --detectOpenHandles",
     "entity:create": "ts-node ./node_modules/typeorm/cli.js entity:create -n",
     "migrate": "ts-node ./node_modules/typeorm/cli.js migration:run",
     "migrate:revert": "ts-node ./node_modules/typeorm/cli.js migration:revert",

@@ -2,4 +2,4 @@ process.env.NODE_ENV = "test";
 
 beforeAll(async () => {});
 
-afterAll(async done => done());
+afterAll(async () => {});
