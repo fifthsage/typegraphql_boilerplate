@@ -2,8 +2,6 @@
 
 exports[`User api users 1`] = `
 Object {
-  "data": Object {
-    "users": Array [],
-  },
+  "users": Array [],
 }
 `;

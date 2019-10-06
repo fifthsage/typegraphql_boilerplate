@@ -13,7 +13,7 @@
     "@types/jest": "^24.0.18",
     "@types/jsonwebtoken": "^8.3.2",
     "@types/morgan": "^1.7.36",
-    "@types/node": "^12.6.8",
+    "@types/node": "^12.7.11",
     "@types/passport": "^1.0.1",
     "@types/passport-jwt": "^3.0.2",
     "@types/supertest": "^2.0.8",
@@ -22,6 +22,7 @@
     "babel-runtime": "^6.26.0",
     "eslint": "^6.3.0",
     "gql-merge": "^0.0.6",
+    "graphql-request": "^1.8.2",
     "graphql-to-typescript": "^0.1.2",
     "husky": "^3.0.5",
     "jest": "^24.9.0",
@@ -30,6 +31,7 @@
     "supertest": "^4.0.2",
     "ts-jest": "^24.0.2",
     "ts-node": "^8.3.0",
+    "tslint": "^5.20.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.5.3"
   },
@@ -67,7 +69,7 @@
   "scripts": {
     "dev": "cd src &&  NODE_ENV=development nodemon --exec ts-node app.ts -e ts,graphql",
     "start": "cd src &&  NODE_ENV=production nodemon --exec ts-node app.ts -e ts,graphql",
-    "lint": "eslint ./src/**/*.ts --fix",
+    "lint": "tslint ./src/**/*.ts --fix",
     "test": "jest --passWithNoTests --forceExit --detectOpenHandles",
     "entity:create": "ts-node ./node_modules/typeorm/cli.js entity:create -n",
     "migrate": "ts-node ./node_modules/typeorm/cli.js migration:run",
@@ -78,12 +80,13 @@
   },
   "lint-staged": {
     "src/**/*.ts": [
-      "eslint --fix",
+      "tslint --fix",
       "git add",
-      "jest --bail --findRelatedTests"
+      "jest --bail --findRelatedTests --forceExit --detectOpenHandles"
     ]
   },
   "jest": {
+    "globalSetup": "./__tests__/callSetup.js",
     "testPathIgnorePatterns": [
       "<rootDir>/node_modules/"
     ],
@@ -96,9 +99,6 @@
       }
     },
     "testRegex": "\\.(test|spec)\\.((js|ts))$",
-    "setupFilesAfterEnv": [
-      "<rootDir>/__tests__/setup.ts"
-    ],
     "cacheDirectory": ".jest/cache"
   },
   "husky": {

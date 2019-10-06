@@ -1,10 +1,10 @@
 import { ApolloServer } from "apollo-server-express";
+import path from "path";
+import { buildSchema } from "type-graphql";
 import Container from "typedi";
 import * as TypeORM from "typeorm";
-import { buildSchema } from "type-graphql";
-import path from "path";
 import { authChecker } from "./api/authorization/auth-checker";
-import { ErrorLoggerMiddleware } from "./api/middlewares/error-logger";
+// import { ErrorLoggerMiddleware } from "./api/middlewares/error-logger";
 
 export default async () => {
   TypeORM.useContainer(Container);
@@ -12,7 +12,7 @@ export default async () => {
   const schema = await buildSchema({
     resolvers: [__dirname + "/api/**/*.resolver.ts"],
     authChecker,
-    globalMiddlewares: [ErrorLoggerMiddleware],
+    // globalMiddlewares: [ErrorLoggerMiddleware],
     container: Container,
     emitSchemaFile: path.resolve(__dirname, "schema.gql")
   });

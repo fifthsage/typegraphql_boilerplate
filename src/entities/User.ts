@@ -1,3 +1,5 @@
+import { MaxLength } from "class-validator";
+import { Field, ID, ObjectType } from "type-graphql";
 import {
   BaseEntity,
   Column,
@@ -6,14 +8,12 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
-import { MaxLength } from "class-validator";
-import { Field, ID, ObjectType } from "type-graphql";
 
 export type Role = "GUEST" | "VIEWER" | "USER" | "ADMIN";
 
 @Entity("users")
 @ObjectType()
-//@Unique(["kakao_auth_id"])
+// @Unique(["kakao_auth_id"])
 class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   @Field(type => ID)

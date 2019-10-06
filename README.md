@@ -1,4 +1,4 @@
-# express + typesciprt + typeorm + typegraphql + apollo server boilerpalte
+# express + typesciprt + typeorm + typegraphql + apollo server + jest graphql testing boilerpalte
 
 steps
 

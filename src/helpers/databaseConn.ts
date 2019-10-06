@@ -1,4 +1,4 @@
-import { createConnection, getConnectionOptions, getConnection } from "typeorm";
+import { createConnection, getConnection, getConnectionOptions } from "typeorm";
 
 export default async () => {
   let name = "default";

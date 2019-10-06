@@ -1,12 +1,12 @@
+import cors from "cors";
 import express from "express";
 import session from "express-session";
-import apollo from "./apollo";
-import logger from "morgan";
 import helmet from "helmet";
-import cors from "cors";
+import logger from "morgan";
 import common from "../config/common";
-import { authenticateJwt } from "./passport";
+import apollo from "./apollo";
 import databaseConn from "./helpers/databaseConn";
+import { authenticateJwt } from "./passport";
 
 const app = express();
 
@@ -46,13 +46,4 @@ const prepareServer = async () => {
   return app;
 };
 
-const listen = () => {
-  app.listen(common.port, () => {
-    console.log(`🚀 Server ready at ${common.port}`);
-  });
-};
-
-export default async () => ({
-  app: await prepareServer(),
-  listen: listen
-});
+export default async () => await prepareServer();

@@ -1,5 +1,6 @@
-import { closeDatabaseConn } from "../../src/helpers/databaseConn";
-import databaseConn from "../../src/helpers/databaseConn";
+import databaseConn, {
+  closeDatabaseConn
+} from "../../src/helpers/databaseConn";
 import User from "../../src/entities/User";
 
 beforeAll(async () => {
