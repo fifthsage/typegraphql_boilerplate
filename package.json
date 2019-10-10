@@ -70,7 +70,8 @@
     "dev": "cd src &&  NODE_ENV=development nodemon --exec ts-node app.ts -e ts,graphql",
     "start": "cd src &&  NODE_ENV=production nodemon --exec ts-node app.ts -e ts,graphql",
     "lint": "tslint ./src/**/*.ts --fix",
-    "test": "jest --passWithNoTests --forceExit --detectOpenHandles",
+    "test:feature": "jest -c jest.config.feature.js --passWithNoTests --forceExit --detectOpenHandles",
+    "test:unit": "jest -c jest.config.unit.js --passWithNoTests --forceExit --detectOpenHandles",
     "entity:create": "ts-node ./node_modules/typeorm/cli.js entity:create -n",
     "migrate": "ts-node ./node_modules/typeorm/cli.js migration:run",
     "migrate:revert": "ts-node ./node_modules/typeorm/cli.js migration:revert",
@@ -81,32 +82,12 @@
   "lint-staged": {
     "src/**/*.ts": [
       "tslint --fix",
-      "git add",
-      "jest --bail --findRelatedTests --forceExit --detectOpenHandles"
+      "git add"
     ]
-  },
-  "jest": {
-    "globalSetup": "./__tests__/callSetup.js",
-    "setupFilesAfterEnv": [
-      "./jest.setup.js"
-    ],
-    "testPathIgnorePatterns": [
-      "<rootDir>/node_modules/"
-    ],
-    "transform": {
-      "^.+\\.(ts|tsx)$": "ts-jest"
-    },
-    "globals": {
-      "ts-jest": {
-        "tsConfig": "tsconfig.json"
-      }
-    },
-    "testRegex": "\\.(test|spec)\\.((js|ts))$",
-    "cacheDirectory": ".jest/cache"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged && yarn test:feature"
     }
   }
 }
