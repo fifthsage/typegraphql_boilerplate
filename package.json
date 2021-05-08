@@ -63,7 +63,7 @@
     "reflect-metadata": "^0.1.13",
     "type-graphql": "^0.17.5",
     "typedi": "^0.8.0",
-    "typeorm": "^0.2.18",
+    "typeorm": "^0.2.25",
     "typeorm-typedi-extensions": "^0.2.3"
   },
   "scripts": {
