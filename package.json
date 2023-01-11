@@ -41,7 +41,7 @@
     "@types/graphql": "^14.5.0",
     "apollo-server-express": "^2.9.3",
     "bcrypt": "^3.0.6",
-    "class-validator": "^0.10.1",
+    "class-validator": "^0.14.0",
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
